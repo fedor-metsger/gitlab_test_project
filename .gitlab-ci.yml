@@ -3,10 +3,7 @@ stages:          # List of stages for jobs, and their order of execution
   - build
   - deploy
 
-image: docker:20.10.5
-
-services:
-  - docker:20.10.5-dind
+image: docker:24-dind
 
 builder:
   stage: build
