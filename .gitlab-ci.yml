@@ -16,7 +16,6 @@ variables:
 builder:
   stage: build
   script:
-    - docker images
     - docker build -t test_project_build:latest .
   except:
     - main
