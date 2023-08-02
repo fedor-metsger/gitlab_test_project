@@ -22,4 +22,4 @@ deployer:
   script:
     - docker build -t hello:gitlab-$CI_COMMIT_SHORT_SHA .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD u91y-gitlab.gitlab.yandexcloud.net:5050
-    - docker push hello:gitlab-$CI_COMMIT_SHORT_SHA
+    - docker push u91y-gitlab.gitlab.yandexcloud.net:5050/hello:gitlab-$CI_COMMIT_SHORT_SHA
