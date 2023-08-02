@@ -13,13 +13,6 @@ default:
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
 
-builder:
-  stage: build
-  script:
-    - docker build -t test_project_build:latest .
-  except:
-    - main
-
 deployer:
   stage: deploy
   variables:
@@ -27,8 +20,6 @@ deployer:
   services:
     - docker:dind 
   script:
-    - docker build -t u91y-gitlab.gitlab.yandexcloud.net:5050/fedor/test-project .
+    - docker build -t hello:gitlab-$CI_COMMIT_SHORT_SHA .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD u91y-gitlab.gitlab.yandexcloud.net:5050
-    - docker push u91y-gitlab.gitlab.yandexcloud.net:5050/fedor/test-project
-  only:
-    - main
+    - docker push hello:gitlab-$CI_COMMIT_SHORT_SHA
